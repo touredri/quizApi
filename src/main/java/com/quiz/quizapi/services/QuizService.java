@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Service
 public class QuizService {
 
@@ -24,7 +26,7 @@ public class QuizService {
         return quizRepository.findById(id).orElse(null);
     }
 
-    public  Object getAllQuiz() {
+    public List<Quiz> getAllQuiz() {
         return quizRepository.findAll();
     }
 
