@@ -32,4 +32,8 @@ public class UtilisateurService {
     public List<Utilisateur> findA() {
         return userRepo.findAll();
     }
+    public  Utilisateur deleteUtilisateurById(Long id) {
+        userRepo.deleteById(id);
+        return null;
+    }
 }

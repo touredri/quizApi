@@ -30,7 +30,7 @@ public class QuizService {
         return quizRepository.findAll();
     }
 
-    public Object deleteQuizById(Long id) {
+    public Quiz deleteQuizById(Long id) {
         quizRepository.deleteById(id);
         return null;
     }

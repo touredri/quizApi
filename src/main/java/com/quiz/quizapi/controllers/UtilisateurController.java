@@ -1,5 +1,6 @@
 package com.quiz.quizapi.controllers;
 
+import com.quiz.quizapi.models.Quiz;
 import com.quiz.quizapi.models.Utilisateur;
 import com.quiz.quizapi.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class UtilisateurController {
     @GetMapping("show/{id}")
     public Utilisateur mt(@PathVariable("id") Long id){
         return utilisateurService.findById(id);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Utilisateur> deleteUtilisateurById(@PathVariable("id") Long id){
+        utilisateurService.deleteUtilisateurById(id);
+        return ResponseEntity.ok().build();
     }
 }
