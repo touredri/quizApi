@@ -7,17 +7,26 @@ import lombok.EqualsAndHashCode;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Utilisateur extends Personne {
-    public Utilisateur() {
-        super();
-    }
+public class Utilisateur {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column (nullable = false)
+    private String pseudo;
+
+
+    @Column (nullable = false)
+    private String email;
+
+    @Column (nullable = false)
+    private String motdepasse;
 
     @OneToMany(mappedBy = "resultat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Resultat> resultats = new ArrayList<>();
+    private List<Resultat> resultats;
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Quiz> listQuiz = new ArrayList<>();
+    private List<Quiz> listQuiz;
 }

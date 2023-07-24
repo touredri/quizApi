@@ -21,5 +21,5 @@ public class Question {
     private Quiz quiz;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Reponse> reponse = new ArrayList<>();
+    private List<Reponse> reponse;
 }

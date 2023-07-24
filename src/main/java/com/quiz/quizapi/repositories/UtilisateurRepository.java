@@ -1,9 +1,9 @@
 package com.quiz.quizapi.repositories;
 
-import com.quiz.quizapi.models.Quiz;
+import com.quiz.quizapi.models.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface QuizRepository extends JpaRepository<Quiz, Long> {
+public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 }
