@@ -1,28 +1,34 @@
 package com.quiz.quizapi.services;
 
 import com.quiz.quizapi.models.Quiz;
+import com.quiz.quizapi.models.Utilisateur;
 import com.quiz.quizapi.repositories.QuizRepository;
+import com.quiz.quizapi.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class QuizService {
 
-   // @Autowired
-    private static QuizRepository quizRepository;
+   @Autowired
+    private  QuizRepository quizRepository;
+    public QuizService (QuizRepository quizRepository) {
+        this.quizRepository = quizRepository;
+    }
     public Quiz creerQuiz(Quiz quiz) {
         return quizRepository.save(quiz);
     }
 
-    public static Object getQuizById(Long id) {
+    public  Object getQuizById(Long id) {
         return quizRepository.findById(id).orElse(null);
     }
 
-    public static Object getAllQuiz() {
+    public  Object getAllQuiz() {
         return quizRepository.findAll();
     }
 
-    public static Object deleteQuizById(Long id) {
+    public Object deleteQuizById(Long id) {
         quizRepository.deleteById(id);
         return null;
     }

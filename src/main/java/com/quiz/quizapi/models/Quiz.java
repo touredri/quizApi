@@ -1,4 +1,5 @@
 package com.quiz.quizapi.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,17 +18,16 @@ public class Quiz {
     private String titre;
 
     @Column (nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Question> question = new ArrayList<>();
+    private List<Question> question;
+
 
     @ManyToOne
-    @JoinColumn(name = "administrateur_id", nullable = false)
-    private Administrateur administrateur;
-
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id", nullable = false)
+    @JsonIgnore
+    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
 }
