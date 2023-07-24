@@ -3,21 +3,19 @@ package com.quiz.quizapi.models;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
+@Data
 public class Administrateur extends Personne {
-
-        @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
+        public Administrateur() {
+            super();
+        }
+        @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL)
         private List<Quiz> quizzes = new ArrayList<>();
-
-        public List<Quiz> getQuizzes() {
-            return quizzes;
-        }
-
-        public void setQuizzes(List<Quiz> quiz) {
-            this.quizzes = quiz;
-        }
 }
