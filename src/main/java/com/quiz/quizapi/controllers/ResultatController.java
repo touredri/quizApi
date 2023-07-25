@@ -41,13 +41,9 @@ public class ResultatController {
 		}
 
 		@GetMapping("/quiz/{quiz_id}")
-		public List<Object> getByQuizId(@PathVariable("quiz_id") Long quiz_id) {
-			List<Resultat> resultats = resultatService.findAllByQuizId(quiz_id);
-			//List<Utilisateur> listUser=new ArrayList<>();
-			List<Object> list = new ArrayList<>();
-			for(Resultat r:resultats){
-				list.add(r.getUtilisateur().getPseudo() + " : " + r.getScore());
-			}
-			return list;
+		public List<Resultat> getByQuizId(@PathVariable("quiz_id") Long quiz_id) {
+			return resultatService.findAllByQuizId(quiz_id);
 		}
+
+
 }
