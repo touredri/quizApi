@@ -1,5 +1,6 @@
 package com.quiz.quizapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Question {
     private String question;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "quiz_id", nullable = false)
     private Quiz quiz;
 

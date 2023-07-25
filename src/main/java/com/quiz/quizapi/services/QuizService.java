@@ -22,7 +22,7 @@ public class QuizService {
         return quizRepository.save(quiz);
     }
 
-    public  Object getQuizById(Long id) {
+    public  Quiz getQuizById(Long id) {
         return quizRepository.findById(id).orElse(null);
     }
 
@@ -30,7 +30,7 @@ public class QuizService {
         return quizRepository.findAll();
     }
 
-    public Object deleteQuizById(Long id) {
+    public Quiz deleteQuizById(Long id) {
         quizRepository.deleteById(id);
         return null;
     }
