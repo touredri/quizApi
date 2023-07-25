@@ -13,32 +13,28 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class ResultatService {
 	
-	private final ResultatRepository resultatRepository;
 	@Autowired
-	public ResultatService(ResultatRepository resultatRepository) {
-		this.resultatRepository = resultatRepository;
-	}
-	public Resultat findById(int id) {
+    private  ResultatRepository resultatRepository;
+
+	public Resultat findById(Long id) {
         return resultatRepository.findById(id).orElse(null);
     }
 
     public Resultat save(Resultat resultat) {
-        return resultatRepository.save(resultat);
+         resultatRepository.save(resultat);
+         return null;
     }
 
     public void delete(Resultat resultat) {
     	resultatRepository.delete(resultat);
     }
 
-    public List<Resultat> findByQuizId(int quizId) {
-        return resultatRepository.findByQuizId(quizId);
-    }
-
-    public List<Resultat> findByUserUsername(String Pseudo) {
-        return resultatRepository.findByUserUsername(Pseudo);
-    }
 
 	public List<Resultat> findAll() {
 		return resultatRepository.findAll();
 	}
+
+    public List<Resultat> findAllByQuizId(Long quizId) {
+        return resultatRepository.findAllByQuizId(quizId);
+    }
 }

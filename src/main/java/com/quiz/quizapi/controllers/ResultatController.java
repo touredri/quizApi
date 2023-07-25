@@ -1,52 +1,53 @@
 package com.quiz.quizapi.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.quiz.quizapi.models.Quiz;
+import com.quiz.quizapi.models.Utilisateur;
+import com.quiz.quizapi.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.quiz.quizapi.models.Resultat;
 import com.quiz.quizapi.services.ResultatService;
 
-@Controller
-@RequestMapping("api/resultats")
+@RestController
+@RequestMapping("api/resultat")
 public class ResultatController {
-	 @Autowired
+		@Autowired
 	    private ResultatService resultatService;
+		@Autowired
+		private UtilisateurService utilisateurService;
+		@Autowired
+		private QuizController quizService;
 
-	    @GetMapping("/resultatsQuiz")
-	    public String getResultats(Model model) {
-	        List<Resultat> resultats = resultatService.findAll();
-	        model.addAttribute("resultats", resultats);
-	        return "resultats";
-	    }
+		@PostMapping("/new/{user_id}/{quiz_id}")
+		public Resultat createResultat(@RequestBody Resultat resultat, @PathVariable Long user_id, @PathVariable Long quiz_id) {
+			Utilisateur user = utilisateurService.findById(user_id);
+			resultat.setUtilisateur(user);
+			Quiz quiz = quizService.getQuizById(quiz_id).getBody();
+			resultat.setQuiz(quiz);
+			return resultatService.save(resultat);
+		}
+		@GetMapping("/all")
+		public List<Resultat> getAll(){
+			return resultatService.findAll();
+		}
 
-	    @GetMapping("/resultatsQuiz/{id}")
-	    public String getResultat(@PathVariable int id, Model model) {
-	        Resultat resultat = resultatService.findById(id);
+		@GetMapping("/{id}")
+		public Resultat getById(@PathVariable Long id) {
+			return resultatService.findById(id);
+		}
 
-	        model.addAttribute("resultat", resultat);
-
-	        return "resultat";
-	    }
-
-	    @GetMapping("/resultatsQuiz/new")
-	    public String newResultat(Model model) {
-	        Resultat resultat = new Resultat();
-
-	        model.addAttribute("resultat", resultat);
-
-	        return "new_resultat";
-	    }
-
-	    @PostMapping("/resultatsQuiz")
-	    public String createResultat(Resultat resultat) {
-	        resultatService.save(resultat);
-	        return "redirect:/resultats";
-	    }
+		@GetMapping("/quiz/{quiz_id}")
+		public List<Object> getByQuizId(@PathVariable("quiz_id") Long quiz_id) {
+			List<Resultat> resultats = resultatService.findAllByQuizId(quiz_id);
+			//List<Utilisateur> listUser=new ArrayList<>();
+			List<Object> list = new ArrayList<>();
+			for(Resultat r:resultats){
+				list.add(r.getUtilisateur().getPseudo() + " : " + r.getScore());
+			}
+			return list;
+		}
 }

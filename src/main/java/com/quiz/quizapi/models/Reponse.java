@@ -8,7 +8,6 @@ import javax.swing.*;
 
 @Entity
 @Data
-@Builder
 public class Reponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

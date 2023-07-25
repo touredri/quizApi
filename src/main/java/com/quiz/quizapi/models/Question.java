@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Builder
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
