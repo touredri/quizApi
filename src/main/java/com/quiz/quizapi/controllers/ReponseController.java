@@ -33,4 +33,9 @@ public class ReponseController {
     public List<Reponse> reponseList(@PathVariable("id") Long id) {
         return reponseService.getAllReponseForQuestion(id);
     }
+
+    @DeleteMapping("supprimer/{id}")
+    public void deleteReponse(@PathVariable("id") Long id) {
+        reponseService.deleteReponse(id);
+    }
 }

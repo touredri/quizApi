@@ -22,4 +22,8 @@ public class ReponseService {
     public Reponse addReponse(Reponse reponse) {
         return reponseRepository.save(reponse);
     }
+
+    public void deleteReponse(Long id) {
+        reponseRepository.deleteById(id);
+    }
 }

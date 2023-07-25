@@ -1,5 +1,6 @@
 package com.quiz.quizapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,6 +19,7 @@ public class Reponse {
     private Boolean reponse;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
