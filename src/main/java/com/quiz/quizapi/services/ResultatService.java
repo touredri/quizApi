@@ -2,6 +2,8 @@ package com.quiz.quizapi.services;
 
 import java.util.List;
 
+import com.quiz.quizapi.models.Quiz;
+import com.quiz.quizapi.models.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +38,9 @@ public class ResultatService {
 
     public List<Resultat> findAllByQuizId(Long quizId) {
         return resultatRepository.findAllByQuizId(quizId);
+    }
+
+    public Resultat findByUserAndQuiz(Utilisateur user, Quiz quiz) {
+        return resultatRepository.findByUtilisateur_IdAndQuiz_Id(user, quiz);
     }
 }

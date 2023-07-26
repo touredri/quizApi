@@ -9,6 +9,8 @@ import java.util.List;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor @AllArgsConstructor
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +37,5 @@ public class Utilisateur {
     @JsonIgnore
     private List<Quiz> listQuiz;
 
-    private Object login(){
 
-    }
 }

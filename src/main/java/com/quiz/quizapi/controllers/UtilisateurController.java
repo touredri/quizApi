@@ -1,7 +1,9 @@
 package com.quiz.quizapi.controllers;
 
-import com.quiz.quizapi.models.Quiz;
 import com.quiz.quizapi.models.Utilisateur;
+import com.quiz.quizapi.repositories.QuestionRepository;
+import com.quiz.quizapi.repositories.QuizRepository;
+import com.quiz.quizapi.repositories.UtilisateurRepository;
 import com.quiz.quizapi.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,16 @@ import java.util.List;
 @RequestMapping("/api/user")
 public class UtilisateurController {
     @Autowired
-    private UtilisateurService utilisateurService;
+    private final UtilisateurService utilisateurService;
+    @Autowired
+    private UtilisateurRepository userRepo;
+    @Autowired
+    private QuizRepository QuizRepo;
+    @Autowired
+    private QuestionRepository QuestionRepo;
+    public UtilisateurController(UtilisateurService utilisateurService) {
+        this.utilisateurService = utilisateurService;
+    }
 
     @PostMapping("/creerCompte")
     public ResponseEntity<Utilisateur> creerUser(@RequestBody Utilisateur user) {
@@ -33,9 +44,5 @@ public class UtilisateurController {
         utilisateurService.deleteUtilisateurById(id);
         return ResponseEntity.ok().build();
     }
-    @PostMapping("/login")
-    public ResponseEntity<Utilisateur> login(@RequestBody Object login){
-        Utilisateur user = utilisateurService.login(login);
-        return ResponseEntity.ok(user);
-    }
+
 }

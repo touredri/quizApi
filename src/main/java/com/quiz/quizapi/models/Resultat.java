@@ -28,14 +28,4 @@ public class Resultat {
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
-    /*
-
-    @Override
-    public String toString() {
-        return "Resultat{" +
-                "id=" + id +
-                ", Score=" + Score +
-                ", utilisateur=" + utilisateur +
-                '}';
-    }*/
 }

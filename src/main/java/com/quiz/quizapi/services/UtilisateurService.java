@@ -35,7 +35,4 @@ public class UtilisateurService {
         userRepo.deleteById(id);
     }
 
-    public Utilisateur login(Object login) {
-        return userRepo.login(login);
-    }
 }

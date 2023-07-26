@@ -14,6 +14,9 @@ public class ReponseService {
     public List<Reponse> getAllReponseForQuestion(Long id) {
         return reponseRepository.findAllByQuestionId(id);
     }
+    public Reponse getReponseById(Long id) {
+        return reponseRepository.findById(id).orElse(null);
+    }
 
     public Reponse addReponse(Reponse reponse) {
         return reponseRepository.save(reponse);

@@ -54,4 +54,6 @@ public class QuizController {
         quizService.deleteQuizById(id);
         return ResponseEntity.ok().build();
     }
+
+
 }
