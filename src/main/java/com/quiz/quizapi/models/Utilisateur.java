@@ -34,4 +34,8 @@ public class Utilisateur {
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Quiz> listQuiz;
+
+    private Object login(){
+
+    }
 }

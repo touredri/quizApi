@@ -33,4 +33,9 @@ public class UtilisateurController {
         utilisateurService.deleteUtilisateurById(id);
         return ResponseEntity.ok().build();
     }
+    @PostMapping("/login")
+    public ResponseEntity<Utilisateur> login(@RequestBody Object login){
+        Utilisateur user = utilisateurService.login(login);
+        return ResponseEntity.ok(user);
+    }
 }
