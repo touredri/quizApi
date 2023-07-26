@@ -1,5 +1,6 @@
 package com.quiz.quizapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class Utilisateur {
     private String motdepasse;
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Resultat> resultat;
 
     public List<Resultat> getResultat() {
@@ -30,7 +32,6 @@ public class Utilisateur {
     }
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Quiz> listQuiz;
-
-
 }
