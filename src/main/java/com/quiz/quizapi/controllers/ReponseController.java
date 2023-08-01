@@ -5,12 +5,15 @@ import com.quiz.quizapi.models.Reponse;
 import com.quiz.quizapi.repositories.ReponseRepository;
 import com.quiz.quizapi.services.QuestionService;
 import com.quiz.quizapi.services.ReponseService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Tag(name = "Reponses, description=API pour gérer les reponses")
 @RequestMapping("api/reponse")
 public class ReponseController {
     @Autowired
@@ -18,7 +21,7 @@ public class ReponseController {
 
     @Autowired
     private QuestionService questionService;
-
+@Operation(summary = "Créer une reponse")
     @PostMapping("creer/{id}")
     public Reponse addReponse(@RequestBody Reponse reponse, @PathVariable("id") Long id) {
         Question question = questionService.getQuestionById(id);
@@ -28,7 +31,7 @@ public class ReponseController {
         }
         return null;
     }
-
+@Operation(summary = "Récupérer une reponse par son identifiant!")
     @GetMapping("all/{id}")
     public List<Reponse> reponseList(@PathVariable("id") Long id) {
         return reponseService.getAllReponseForQuestion(id);

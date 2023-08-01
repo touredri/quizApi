@@ -41,6 +41,6 @@ public class ResultatService {
     }
 
     public Resultat findByUserAndQuiz(Utilisateur user, Quiz quiz) {
-        return resultatRepository.findByUtilisateur_IdAndQuiz_Id(user, quiz);
+        return resultatRepository.findByUtilisateur_IdAndQuiz_Id(user.getId(), quiz.getId());
     }
 }
